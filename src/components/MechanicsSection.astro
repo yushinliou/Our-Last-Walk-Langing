@@ -1,0 +1,94 @@
+---
+const mechanics = [
+  {
+    icon: '👁️',
+    title: 'First-Person View',
+    description: 'Experience the world through the eyes of Mr. Rich or Angel — each seeing things the other cannot.',
+  },
+  {
+    icon: '🔄',
+    title: 'Perspective Switch',
+    description: 'Instantly switch between ghost and dog to combine their unique abilities and solve each puzzle.',
+  },
+  {
+    icon: '🧩',
+    title: 'Collaborative Puzzles',
+    description: 'Neither alone can escape. Only by working together — one touching what the other cannot — will you find the way out.',
+  },
+  {
+    icon: '🔍',
+    title: 'Exploration',
+    description: 'Search every corner of the house. Smell hidden trails, pass through walls, and piece together the story behind each room.',
+  },
+];
+---
+
+<section class="mechanics-section">
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center; color: var(--gold-400);">How You Play</h2>
+    <p class="section-subtitle reveal" style="text-align:center;">Two souls. One bond. Zero easy answers.</p>
+
+    <div class="mechanics-grid">
+      {mechanics.map((m) => (
+        <div class="mechanic-card reveal">
+          <span class="mechanic-icon">{m.icon}</span>
+          <h3 class="mechanic-title">{m.title}</h3>
+          <p class="mechanic-desc">{m.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.mechanics-section {
+  padding: 8rem 0;
+  background: linear-gradient(to bottom, var(--dark-800), var(--dark-900));
+}
+
+.mechanics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.mechanic-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.mechanic-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 168, 75, 0.3);
+}
+
+.mechanic-icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+
+.mechanic-card:hover .mechanic-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.mechanic-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold-400);
+  margin-bottom: 0.75rem;
+}
+
+.mechanic-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--cream-200);
+  opacity: 0.85;
+}
+</style>

@@ -1,0 +1,264 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import TeamMember from '../components/TeamMember.astro';
+import Footer from '../components/Footer.astro';
+import { Gamepad2, Users, Monitor, Sparkles, Github, Rocket, Box, Palette } from 'lucide-astro';
+
+// TODO: add avatars for everyone and contact
+
+const team = [
+  { name: 'Lexi Yu Shin Liou', role: 'Narrative / Web',        avatar: undefined },
+  { name: 'Apeel Subedi',      role: 'Game Development',       avatar: undefined },
+  { name: 'Abidin Baran',      role: 'Narrative / Room Design', avatar: undefined },
+  { name: 'Alfred Malmström',  role: 'Game Development',       avatar: undefined },
+  { name: 'Anna Likhanova',    role: 'Game Development / Art', avatar: undefined },
+];
+---
+
+<BaseLayout title="About" description="Learn about the team behind Our Last Walk — Lucky 7.">
+  <Navigation />
+
+  <main class="about-main">
+
+    <!-- Game Overview -->
+    <header class="about-header">
+      <div class="container">
+        <h1 class="reveal" style="font-family: var(--font-display); font-size: clamp(2.5rem,6vw,4rem); font-weight:700; color: var(--gold-400); margin-bottom: 1rem;">About the Game</h1>
+        <p class="about-lead reveal">
+          <em>Our Last Walk</em> is a first-person slice-of-life puzzle game about companionship,
+          mutual dependence, and the things that truly matter.
+        </p>
+      </div>
+    </header>
+
+    <section class="about-overview">
+      <div class="container">
+        <div class="overview-grid">
+          <div class="overview-card reveal">
+            <span class="overview-icon"><Gamepad2 size={32} /></span>
+            <h3>Genre</h3>
+            <p>Slice of Life / Puzzle / Escape Room</p>
+          </div>
+          <div class="overview-card reveal">
+            <span class="overview-icon"><Users size={32} /></span>
+            <h3>Target Audience</h3>
+            <p>Players who love dogs and narrative-driven games with emotional depth</p>
+          </div>
+          <div class="overview-card reveal">
+            <span class="overview-icon"><Monitor size={32} /></span>
+            <h3>Platform</h3>
+            <p>PC (Windows / Mac)</p>
+          </div>
+          <div class="overview-card reveal">
+            <span class="overview-icon"><Sparkles size={32} /></span>
+            <h3>What Makes It Unique</h3>
+            <p>Playing as both a ghost and a dog</p>
+          </div>
+        </div>
+
+        <div class="about-concept reveal">
+          <h2 style="font-family: var(--font-display); font-size: 1.8rem; color: var(--gold-400); margin-bottom: 1.25rem;">The Core Concept</h2>
+          <p>
+            Mr. Rich wakes up as a ghost in his own home. He is along, except for his dog Angel. Together, they must solve the mysteries of the house and
+            find a way out.
+          </p>
+          <p>
+            The game's central mechanic is switching between Mr. Rich's ghostly perspective and Angel's physical
+            one. It is also its central theme. Neither alone is enough. Understanding each other's limitations
+            and strengths is what allows them to move forward. Together.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team-section">
+      <div class="container">
+        <h2 class="section-title reveal" style="color: var(--gold-400);">Meet Lucky 7</h2>
+        <p class="section-subtitle reveal">Five people. One shared vision. Countless late nights.</p>
+
+        <div class="team-grid">
+          {team.map(member => (
+            <div class="reveal">
+              <TeamMember name={member.name} role={member.role} avatar={member.avatar} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-section">
+      <div class="container">
+        <h2 class="section-title reveal" style="color: var(--gold-400);">Built With</h2>
+        <div class="tech-grid">
+          <div class="tech-item reveal">
+            <span class="tech-icon"><Gamepad2 size={32} /></span>
+            <span class="tech-name">Unity</span>
+            <span class="tech-desc">Game engine</span>
+          </div>
+          <div class="tech-item reveal">
+            <span class="tech-icon"><Box size={32} /></span>
+            <span class="tech-name">Blender</span>
+            <span class="tech-desc">3D modeling & animation</span>
+          </div>
+          <div class="tech-item reveal">
+            <span class="tech-icon"><Github size={32} /></span>
+            <span class="tech-name">GitHub</span>
+            <span class="tech-desc">Version control & collaboration</span>
+          </div>
+          <div class="tech-item reveal">
+            <span class="tech-icon"><Rocket size={32} /></span>
+            <span class="tech-name">Astro</span>
+            <span class="tech-desc">This website</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.about-main {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: var(--dark-900);
+}
+
+.about-header {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.about-lead {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--cream-100);
+  max-width: 640px;
+  opacity: 0.9;
+}
+
+.about-lead em {
+  color: var(--ghost-400);
+  font-style: italic;
+}
+
+.about-overview {
+  padding: 6rem 0;
+  background: var(--dark-900);
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.overview-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 1.75rem;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.overview-card:hover {
+  border-color: rgba(212,168,75,0.3);
+}
+
+.overview-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  color: var(--gold-400);
+}
+
+.overview-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold-400);
+  margin-bottom: 0.5rem;
+}
+
+.overview-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--cream-200);
+  opacity: 0.8;
+}
+
+.about-concept {
+  max-width: 720px;
+}
+
+.about-concept p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--cream-100);
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+
+.team-section {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.tech-section {
+  padding: 6rem 0;
+  background: var(--dark-800);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+}
+
+.tech-icon {
+  color: var(--gold-400);
+}
+
+.tech-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cream-50);
+}
+
+.tech-desc {
+  font-size: 0.8rem;
+  color: var(--cream-200);
+  opacity: 0.6;
+}
+</style>

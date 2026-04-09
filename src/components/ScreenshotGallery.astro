@@ -1,0 +1,125 @@
+---
+---
+
+<section class="gallery-section">
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center; color: var(--gold-400);">A Glimpse Into the World</h2>
+    <p class="section-subtitle reveal" style="text-align:center;">See the bond between ghost and dog come to life.</p>
+  </div>
+
+  <div class="gallery-scroll">
+    <div class="gallery-track">
+      <div class="gallery-item reveal">
+        <img src="/gamecover.png" alt="Game Cover" loading="lazy" />
+        <div class="gallery-caption">Game Cover</div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="/MrRich.png" alt="Mr. Rich — The Ghost" loading="lazy" />
+        <div class="gallery-caption">Mr. Rich — The Ghost</div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="/angel.png" alt="Angel — The Dog" loading="lazy" />
+        <div class="gallery-caption">Angel — The Dog</div>
+      </div>
+      <div class="gallery-item reveal">
+        <video
+          src="/Lucky_7_Intro_sm.mov"
+          autoplay
+          muted
+          loop
+          playsinline
+          style="width:100%; height:100%; object-fit:cover;"
+        ></video>
+        <div class="gallery-caption">Intro Cinematic</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.gallery-section {
+  padding: 8rem 0 6rem;
+  background: var(--dark-900);
+}
+
+.gallery-scroll {
+  margin-top: 3rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-600) var(--dark-800);
+  padding: 1rem 0 2rem;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.gallery-scroll::-webkit-scrollbar-track {
+  background: var(--dark-800);
+}
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: var(--gold-600);
+  border-radius: 2px;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 var(--container-padding);
+  width: max-content;
+}
+
+.gallery-item {
+  position: relative;
+  width: 420px;
+  height: 280px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 2px;
+  scroll-snap-align: start;
+  transition: border-color 0.3s;
+
+}
+
+.gallery-item:hover {
+  border-color: var(--gold-400);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to top, rgba(26,26,26,0.9), transparent);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--cream-100);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .gallery-item {
+    width: 85vw;
+    height: 220px;
+  }
+}
+</style>

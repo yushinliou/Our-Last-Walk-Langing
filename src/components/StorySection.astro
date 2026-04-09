@@ -1,0 +1,119 @@
+---
+---
+
+<section id="story" class="story-section">
+  <div class="container">
+    <div class="story-inner">
+      <div class="story-text">
+        <h2 class="section-title reveal">The Story</h2>
+        <p class="story-para reveal">
+          Mr. Rich wakes up in his room. His hands are transparent. His dog is barking beside him.
+        </p>
+        <p class="story-para reveal">
+          One question haunts him: <em>How do I find the way out?</em>
+        </p>
+        <p class="story-para reveal">
+          Together — a ghost who cannot touch the world, and a dog who refuses to leave his side —
+          they must work as one to unravel the mysteries of a house that traps them both.
+        </p>
+        <p class="story-para reveal">
+          A puzzle game about companionship, mutual dependence, and understanding what truly matters
+          before the last walk is over.
+        </p>
+      </div>
+      <!-- TODO: Replace with our own art -->
+      <div class="story-silhouette reveal-right">
+        <div class="silhouette-ghost"></div>
+        <div class="silhouette-dog"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.story-section {
+  padding: 8rem 0;
+  background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
+}
+
+.story-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .story-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.story-text .section-title {
+  color: var(--gold-400);
+  margin-bottom: 2rem;
+}
+
+.story-para {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--cream-100);
+  margin-bottom: 1.25rem;
+  transition-delay: 0.1s;
+}
+
+.story-para em {
+  color: var(--ghost-400);
+  font-style: italic;
+}
+
+.story-silhouette {
+  position: relative;
+  height: 320px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.silhouette-ghost {
+  width: 90px;
+  height: 140px;
+  background: radial-gradient(ellipse at 50% 40%, rgba(94,179,179,0.4), transparent 70%);
+  border-radius: 50% 50% 40% 40%;
+  position: relative;
+  animation: ghostFloat 4s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.silhouette-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  right: 10%;
+  height: 30px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(94,179,179,0.25), transparent 70%);
+  border-radius: 0 0 50% 50%;
+}
+
+.silhouette-dog {
+  width: 100px;
+  height: 70px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(232,169,82,0.4), transparent 70%);
+  border-radius: 40% 60% 40% 30%;
+  animation: dogWag 3s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+@keyframes ghostFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes dogWag {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+</style>

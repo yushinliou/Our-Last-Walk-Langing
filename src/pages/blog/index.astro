@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<BaseLayout title="Dev Blog" description="Behind the scenes of Our Last Walk — development updates, sprint reviews, and more.">
+  <Navigation />
+
+  <main class="blog-main">
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-heading reveal">Dev Blog</h1>
+        <p class="blog-subheading reveal">Behind the scenes of <em>Our Last Walk</em></p>
+      </div>
+    </header>
+
+    <section class="blog-listing">
+      <div class="container">
+        {posts.length === 0
+          ? <p class="no-posts">No posts yet. Check back soon!</p>
+          : (
+            <div class="blog-grid">
+              {posts.map(post => (
+                <div class="reveal">
+                  <BlogCard
+                    title={post.data.title}
+                    description={post.data.description}
+                    pubDate={post.data.pubDate}
+                    slug={post.id.replace('/index', '')}
+                    tags={post.data.tags}
+                    image={post.data.image}
+                  />
+                </div>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.blog-main {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.blog-header {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.blog-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--gold-400);
+  margin-bottom: 0.75rem;
+}
+
+.blog-subheading {
+  font-size: 1.1rem;
+  color: var(--cream-200);
+  opacity: 0.75;
+}
+
+.blog-subheading em {
+  color: var(--ghost-400);
+  font-style: italic;
+}
+
+.blog-listing {
+  padding: 5rem 0;
+  background: var(--dark-900);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+
+.no-posts {
+  text-align: center;
+  color: var(--cream-200);
+  opacity: 0.6;
+  font-size: 1.1rem;
+  padding: 4rem 0;
+}
+</style>

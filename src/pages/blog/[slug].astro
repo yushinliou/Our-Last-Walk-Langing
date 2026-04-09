@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id.replace('/index', '') },
+    props: { post },
+  }));
+}
+
+interface Props { post: CollectionEntry<'blog'>; }
+const { post } = Astro.props;
+const { slug } = Astro.params;
+
+const { Content } = await render(post);
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+const currentIndex = allPosts.findIndex(p => p.id.replace('/index', '') === slug);
+const prevPost = allPosts[currentIndex + 1] ?? null;
+const nextPost = allPosts[currentIndex - 1] ?? null;
+
+const dateStr = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <Navigation />
+
+  <main class="post-main">
+    {post.data.image && (
+      <div class="post-hero-image">
+        <img src={post.data.image} alt={post.data.title} />
+      </div>
+    )}
+
+    <article class="post-article">
+      <header class="post-header">
+        <a href="/blog" class="back-link">← Back to Blog</a>
+        <time class="post-date">{dateStr}</time>
+        <h1 class="post-title">{post.data.title}</h1>
+        <p class="post-description">{post.data.description}</p>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="post-tags">
+            {post.data.tags.map(tag => <span class="post-tag">{tag}</span>)}
+          </div>
+        )}
+        <div class="post-author">By {post.data.author}</div>
+      </header>
+
+      <div class="post-content">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <nav class="post-nav">
+          {prevPost && (
+            <a href={`/blog/${prevPost.id.replace('/index', '')}`} class="post-nav-link prev">
+              <span class="nav-label">← Previous</span>
+              <span class="nav-title">{prevPost.data.title}</span>
+            </a>
+          )}
+          {nextPost && (
+            <a href={`/blog/${nextPost.id.replace('/index', '')}`} class="post-nav-link next">
+              <span class="nav-label">Next →</span>
+              <span class="nav-title">{nextPost.data.title}</span>
+            </a>
+          )}
+        </nav>
+      </footer>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.post-main {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: var(--dark-900);
+}
+
+.post-hero-image {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.post-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem var(--container-padding) 6rem;
+}
+
+.back-link {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--gold-400);
+  letter-spacing: 0.05em;
+  display: inline-block;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover { color: var(--gold-500); }
+
+.post-date {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  margin-bottom: 1rem;
+}
+
+.post-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--cream-50);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.post-description {
+  font-size: 1.15rem;
+  color: var(--cream-200);
+  opacity: 0.75;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.post-tag {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(94,179,179,0.4);
+  color: var(--ghost-400);
+  border-radius: 2px;
+}
+
+.post-author {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--cream-200);
+  opacity: 0.6;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2.5rem;
+}
+
+/* Markdown content */
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--cream-100);
+}
+
+.post-content :global(h2) {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold-400);
+  margin: 2.5rem 0 1rem;
+}
+
+.post-content :global(h3) {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cream-50);
+  margin: 2rem 0 0.75rem;
+}
+
+.post-content :global(p) {
+  margin-bottom: 1.25rem;
+}
+
+.post-content :global(ul), .post-content :global(ol) {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-content :global(li) {
+  margin-bottom: 0.4rem;
+}
+
+.post-content :global(strong) {
+  color: var(--cream-50);
+  font-weight: 600;
+}
+
+.post-content :global(em) {
+  color: var(--ghost-400);
+}
+
+.post-content :global(code) {
+  background: var(--dark-800);
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  font-size: 0.9em;
+  color: var(--amber-400);
+}
+
+.post-content :global(pre) {
+  background: var(--dark-800);
+  padding: 1.5rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.post-content :global(blockquote) {
+  border-left: 3px solid var(--gold-500);
+  padding-left: 1.5rem;
+  color: var(--cream-200);
+  opacity: 0.85;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+.post-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.post-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 45%;
+  transition: color 0.2s;
+}
+
+.post-nav-link.next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.nav-label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+.nav-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--cream-100);
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.post-nav-link:hover .nav-title {
+  color: var(--gold-400);
+}
+</style>
