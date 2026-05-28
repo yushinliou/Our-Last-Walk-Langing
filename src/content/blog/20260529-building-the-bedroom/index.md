@@ -1,7 +1,7 @@
 ---
 title: "Designing the Bedroom"
 description: "A look at the props we built in Blender for the game's landing room the turntable, the telephone, and the problems that came with them."
-pubDate: 2026-05-29
+pubDate: 2026-05-28
 author: "Dev. Apeel Subedi"
 tags: ["blender", "3d", "art", "environment"]
 ---
