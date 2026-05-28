@@ -1,0 +1,109 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  caption: string;
+  featured?: boolean;
+}
+
+const { src, poster, caption, featured = false } = Astro.props;
+---
+
+<div class:list={['video-card', { 'video-featured': featured }]}>
+  <div class="video-wrap">
+    <video src={src} poster={poster} controls preload="metadata" playsinline>
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="play-overlay" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </div>
+  </div>
+  <p class="video-caption">{caption}</p>
+</div>
+
+<style>
+.video-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-400);
+}
+
+.video-featured {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.video-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--dark-900);
+  overflow: hidden;
+}
+
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-400);
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.video-wrap:has(video:not([paused="false"])) .play-overlay {
+  opacity: 1;
+}
+
+video:not([paused]) ~ .play-overlay,
+video[paused] ~ .play-overlay {
+  opacity: 1;
+}
+
+.video-card:focus-within .play-overlay,
+.video-wrap:has(video:focus) .play-overlay {
+  opacity: 0;
+}
+
+.video-caption {
+  padding: 0.75rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--cream-200);
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+</style>
+
+<script>
+document.querySelectorAll<HTMLElement>('.video-wrap').forEach(wrap => {
+  const video = wrap.querySelector('video');
+  const overlay = wrap.querySelector<HTMLElement>('.play-overlay');
+  if (!video || !overlay) return;
+
+  const hide = () => { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; };
+  const show = () => { overlay.style.opacity = '1'; overlay.style.pointerEvents = 'none'; };
+
+  video.addEventListener('play', hide);
+  video.addEventListener('pause', show);
+  video.addEventListener('ended', show);
+});
+</script>

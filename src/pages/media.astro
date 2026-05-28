@@ -1,0 +1,270 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Media" description="Watch trailers and explore screenshots from Our Last Walk — a first-person puzzle game about companionship.">
+  <Navigation />
+
+  <main class="media-main">
+
+    <!-- Page Header -->
+    <header class="media-header">
+      <div class="container">
+        <h1 class="reveal" style="font-family: var(--font-display); font-size: clamp(2.5rem,6vw,4rem); font-weight:700; color: var(--gold-400); margin-bottom: 1rem;">
+          Media
+        </h1>
+        <p class="media-lead reveal">
+          Trailers, gameplay footage, and a glimpse into the world of <em>Our Last Walk</em>.
+        </p>
+      </div>
+    </header>
+
+    <!-- Gameplay Videos -->
+    <section class="videos-section">
+      <div class="container">
+        <h2 class="section-title reveal" style="color: var(--gold-400);">In Motion</h2>
+        <p class="section-subtitle reveal">See the world through the eyes of a ghost — and his dog.</p>
+
+        <!-- Featured video -->
+        <div class="featured-video reveal">
+          <VideoPlayer
+            src="/Lucky_7_Intro_sm.mov"
+            caption="Intro Cinematic — Lucky 7 Studio"
+            featured={true}
+          />
+        </div>
+
+        <!-- Secondary video placeholders -->
+        <div class="video-grid">
+          <div class="video-placeholder reveal">
+            <div class="placeholder-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Gameplay — Coming Soon</span>
+            </div>
+          </div>
+          <div class="video-placeholder reveal">
+            <div class="placeholder-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Puzzle Walkthrough — Coming Soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots Gallery -->
+    <section class="screenshots-section">
+      <div class="container">
+        <h2 class="section-title reveal" style="color: var(--gold-400); text-align: center;">A Glimpse Into the World</h2>
+        <p class="section-subtitle reveal" style="text-align: center;">In-game art and environments from Our Last Walk.</p>
+
+        <div class="screenshot-grid">
+          <figure class="shot-item reveal">
+            <a href="/gamecover.png" target="_blank" rel="noopener">
+              <img src="/gamecover.png" alt="Game Cover Art" loading="lazy" />
+            </a>
+            <figcaption>Game Cover Art</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/MrRich.png" target="_blank" rel="noopener">
+              <img src="/MrRich.png" alt="Mr. Rich — the Ghost" loading="lazy" />
+            </a>
+            <figcaption>Mr. Rich — The Ghost</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/angel.png" target="_blank" rel="noopener">
+              <img src="/angel.png" alt="Angel — the Dog" loading="lazy" />
+            </a>
+            <figcaption>Angel — The Dog</figcaption>
+          </figure>
+
+          <!--
+            Drop additional screenshots into public/ and uncomment these blocks:
+
+          <figure class="shot-item reveal">
+            <a href="/screenshot-01.png" target="_blank" rel="noopener">
+              <img src="/screenshot-01.png" alt="Screenshot 01" loading="lazy" />
+            </a>
+            <figcaption>Living Room — In-Game</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/screenshot-02.png" target="_blank" rel="noopener">
+              <img src="/screenshot-02.png" alt="Screenshot 02" loading="lazy" />
+            </a>
+            <figcaption>Puzzle Scene</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/screenshot-03.png" target="_blank" rel="noopener">
+              <img src="/screenshot-03.png" alt="Screenshot 03" loading="lazy" />
+            </a>
+            <figcaption>Ghost Perspective</figcaption>
+          </figure>
+          -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.media-main {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: var(--dark-900);
+}
+
+/* Header */
+.media-header {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.media-lead {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--cream-100);
+  max-width: 600px;
+  opacity: 0.9;
+}
+
+.media-lead em {
+  color: var(--ghost-400);
+  font-style: italic;
+}
+
+/* Videos section */
+.videos-section {
+  padding: 6rem 0;
+  background: var(--dark-900);
+}
+
+.featured-video {
+  margin-bottom: 2.5rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.video-placeholder {
+  aspect-ratio: 16 / 9;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s;
+}
+
+.video-placeholder:hover {
+  border-color: rgba(212, 168, 75, 0.3);
+}
+
+.placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--cream-200);
+  opacity: 0.4;
+}
+
+.placeholder-inner svg {
+  color: var(--gold-600);
+}
+
+.placeholder-inner span {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Screenshots section */
+.screenshots-section {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, var(--dark-800), var(--dark-900));
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.shot-item {
+  margin: 0;
+}
+
+.shot-item a {
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.shot-item a:hover {
+  border-color: var(--gold-400);
+  transform: translateY(-4px);
+}
+
+.shot-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.shot-item a:hover img {
+  transform: scale(1.04);
+}
+
+.shot-item figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--cream-200);
+  opacity: 0.65;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screenshot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .screenshot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
