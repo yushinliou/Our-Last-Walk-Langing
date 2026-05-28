@@ -37,23 +37,31 @@ import Footer from '../components/Footer.astro';
           />
         </div>
 
-        <!-- Secondary video placeholders -->
+        <!-- Secondary gameplay videos -->
         <div class="video-grid">
-          <div class="video-placeholder reveal">
-            <div class="placeholder-inner">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
-                <polygon points="5 3 19 12 5 21 5 3"/>
-              </svg>
-              <span>Gameplay — Coming Soon</span>
-            </div>
+          <div class="reveal">
+            <VideoPlayer
+              src="/gameplay/ourlastwalk_bedroom%20(1).mp4"
+              caption="Bedroom Exploration"
+            />
           </div>
-          <div class="video-placeholder reveal">
-            <div class="placeholder-inner">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
-                <polygon points="5 3 19 12 5 21 5 3"/>
-              </svg>
-              <span>Puzzle Walkthrough — Coming Soon</span>
-            </div>
+          <div class="reveal">
+            <VideoPlayer
+              src="/gameplay/Place%20Photo%20(1).mov"
+              caption="Placing Objects"
+            />
+          </div>
+          <div class="reveal">
+            <VideoPlayer
+              src="/gameplay/readobj%20(1).mov"
+              caption="Office Object Interaction"
+            />
+          </div>
+          <div class="reveal">
+            <VideoPlayer
+              src="/gameplay/Screen%20Recording%202026-05-06%20at%2011.43.10%20AM%20(1).mov"
+              caption="Gameplay Recording"
+            />
           </div>
         </div>
       </div>
@@ -87,30 +95,61 @@ import Footer from '../components/Footer.astro';
             <figcaption>Angel — The Dog</figcaption>
           </figure>
 
-          <!--
-            Drop additional screenshots into public/ and uncomment these blocks:
-
           <figure class="shot-item reveal">
-            <a href="/screenshot-01.png" target="_blank" rel="noopener">
-              <img src="/screenshot-01.png" alt="Screenshot 01" loading="lazy" />
+            <a href="/gallery/mia7house.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/mia7house.jpg" alt="Mia's Drawing: The House" loading="lazy" />
             </a>
-            <figcaption>Living Room — In-Game</figcaption>
+            <figcaption>Mia's Drawing: The House</figcaption>
           </figure>
 
           <figure class="shot-item reveal">
-            <a href="/screenshot-02.png" target="_blank" rel="noopener">
-              <img src="/screenshot-02.png" alt="Screenshot 02" loading="lazy" />
+            <a href="/gallery/mia6.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/mia6.jpg" alt="Scene — In-Game" loading="lazy" />
             </a>
-            <figcaption>Puzzle Scene</figcaption>
+            <figcaption>Mia's Drawing: Childhood</figcaption>
           </figure>
 
           <figure class="shot-item reveal">
-            <a href="/screenshot-03.png" target="_blank" rel="noopener">
-              <img src="/screenshot-03.png" alt="Screenshot 03" loading="lazy" />
+            <a href="/gallery/mia6bikes.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/mia6bikes.jpg" alt="Mia's Drawing: By the Bikes" loading="lazy" />
             </a>
-            <figcaption>Ghost Perspective</figcaption>
+            <figcaption>Mia's Drawing: By the Bikes</figcaption>
           </figure>
-          -->
+
+          <figure class="shot-item reveal">
+            <a href="/gallery/mia11.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/mia11.jpg" alt="Narrative Scene" loading="lazy" />
+            </a>
+            <figcaption>Mia's Drawing: Dear Mama!</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/gallery/mia10sad.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/mia10sad.jpg" alt="A Moment of Sadness" loading="lazy" />
+            </a>
+            <figcaption>Mia's Drawing: Dear Parents</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/gallery/photo.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/photo.jpg" alt="In-Game Photo" loading="lazy" />
+            </a>
+            <figcaption>Mr. Rich and her Wife</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/gallery/photo-threedudes.jpg" target="_blank" rel="noopener">
+              <img src="/gallery/photo-threedudes.jpg" alt="Three Characters" loading="lazy" />
+            </a>
+            <figcaption>Mr. Rich and His Friends</figcaption>
+          </figure>
+
+          <figure class="shot-item reveal">
+            <a href="/gallery/token-kitchen-outline.png" target="_blank" rel="noopener">
+              <img src="/gallery/token-kitchen-outline.png" alt="Kitchen — Concept Art" loading="lazy" />
+            </a>
+            <figcaption>Angel's Collar</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -161,41 +200,6 @@ import Footer from '../components/Footer.astro';
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-}
-
-.video-placeholder {
-  aspect-ratio: 16 / 9;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.3s;
-}
-
-.video-placeholder:hover {
-  border-color: rgba(212, 168, 75, 0.3);
-}
-
-.placeholder-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--cream-200);
-  opacity: 0.4;
-}
-
-.placeholder-inner svg {
-  color: var(--gold-600);
-}
-
-.placeholder-inner span {
-  font-family: var(--font-ui);
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 /* Screenshots section */
