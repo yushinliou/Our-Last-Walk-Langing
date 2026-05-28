@@ -1,23 +1,11 @@
 ---
-title: "Our First Demo: Mr. Rich and his ex. wife"
-description: "We implement our first game demo and get the player have a sense what would the game looks like"
-pubDate: 2026-04-16
-author: "Lexi Yu Shin Liou"
+title: "Sprint 1 Complete: Core Mechanics"
+description: "We implemented movement, input system, and the soul bond mechanic between Mr. Rich and Angel."
+pubDate: 2026-04-10
+author: "Lucky 7"
 tags: ["sprint", "unity", "mechanics"]
 ---
 
-
-# The story behind
-
-A good game developing process should be like we move fast and failed fast, so we build a mininum version of "Our last walk, demonstrate it to people and receiving feedback.
-
-# Our First Scence
-
-
-
-
-
-<!-- 
 # Markdown Syntax Template
 
 This is a comprehensive reference for Markdown syntax. Use it as a cheat sheet or starter template.
@@ -287,4 +275,4 @@ This content is hidden until clicked.
 
 ---
 
-*Created as a Markdown syntax reference template.* -->
+*Created as a Markdown syntax reference template.*
