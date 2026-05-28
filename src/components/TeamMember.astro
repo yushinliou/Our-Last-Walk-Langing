@@ -1,12 +1,16 @@
 ---
+import { Mail, Linkedin } from 'lucide-astro';
+
 interface Props {
   name: string;
   role: string;
   avatar?: string;
   funFact?: string;
+  email?: string;
+  linkedin?: string;
 }
 
-const { name, role, avatar, funFact } = Astro.props;
+const { name, role, avatar, funFact, email, linkedin } = Astro.props;
 ---
 
 <div class="team-card">
@@ -16,10 +20,25 @@ const { name, role, avatar, funFact } = Astro.props;
   <h3 class="team-name">{name}</h3>
   <p class="team-role">{role}</p>
   {funFact && <p class="team-fact">{funFact}</p>}
+  {(email || linkedin) && (
+    <div class="team-links">
+      {email && (
+        <a class="team-link" href={`mailto:${email}`} aria-label={`Email ${name}`}>
+          <Mail size={16} />
+        </a>
+      )}
+      {linkedin && (
+        <a class="team-link" href={linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn`}>
+          <Linkedin size={16} />
+        </a>
+      )}
+    </div>
+  )}
 </div>
 
 <style>
 .team-card {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,6 +49,31 @@ const { name, role, avatar, funFact } = Astro.props;
   border-radius: 4px;
   gap: 0.5rem;
   transition: transform 0.3s, border-color 0.3s;
+}
+
+.team-links {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.team-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--cream-100);
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+
+.team-link:hover {
+  border-color: var(--gold-400);
+  color: var(--gold-400);
+  background: rgba(212,168,75,0.08);
 }
 
 .team-card:hover {
