@@ -6,7 +6,7 @@ author: "Apeel Subedi"
 tags: ["business", "market", "strategy", "steam"]
 ---
 
-## Market Analysis
+## Market Analysisw
 
 Currently in the market, the "cozy game" category — games which are more relaxing and low-stakes — have gotten quite an attention among regular players. The concept adhered by our game — exploration, narrative, and creativity — rather than absolute fighting and competitive games, has become more popular in the niche gaming community. According to the paper published, the most commonly cited figure values the global cozy game market at roughly **$973 million in 2025, growing toward ~$1.5 billion by 2032 at about a 6.5% CAGR**. The direction of growth is pretty clearly projected; the demand is driven by working professionals and young adults seeking stress relief and digital escapism.
 

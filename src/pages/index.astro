@@ -6,12 +6,37 @@ import StorySection from '../components/StorySection.astro';
 import CharacterCard from '../components/CharacterCard.astro';
 import MechanicsSection from '../components/MechanicsSection.astro';
 import ScreenshotGallery from '../components/ScreenshotGallery.astro';
+import TeamMember from '../components/TeamMember.astro';
 import Footer from '../components/Footer.astro';
+
+const team = [
+  { name: 'Anna Likhanova',    role: 'Developer, Narrative Designer and 2D artist', avatar: '/profile/anna.jpg', email: 'anna.likhanova2002@gmail.com',   linkedin: 'https://www.linkedin.com/in/anna-likhanova-ba9478222/' },
+  { name: 'Lexi Yu Shin Liou', role: 'Narrative designer, Developer',               avatar: '/profile/lex.jpeg', email: 'vxh440@gmail.com',               linkedin: 'https://www.linkedin.com/in/yu-shin-liou-is-lexi/' },
+  { name: 'Apeel Subedi',      role: 'Developer, 3D Artist',                        avatar: '/profile/ape.jpg',  email: 'apeelsubedi@gmail.com',          linkedin: 'https://apeels.com.np' },
+  { name: 'Abidin Baran',      role: '3D Environment Artist',                       avatar: '/profile/abi.jpg',  email: 'abidin@example.com',             linkedin: 'https://www.linkedin.com/in/abidin' },
+  { name: 'Alfred Malmström',  role: 'Contributor',                                 avatar: '/profile/alf.png',  email: 'alfred@example.com',             linkedin: 'https://www.linkedin.com/in/alfred' },
+];
 ---
 
 <BaseLayout title="Home" description="Our Last Walk — An emotional puzzle game about a ghost and his dog.">
   <Navigation />
   <Hero />
+
+  <!-- Team Members -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="section-title reveal" style="text-align:center; color: var(--gold-400);">Meet Lucky 7</h2>
+      <p class="section-subtitle reveal" style="text-align:center;">Five people. One shared vision. Countless late nights.</p>
+      <div class="team-grid">
+        {team.map(member => (
+          <div class="reveal">
+            <TeamMember name={member.name} role={member.role} avatar={member.avatar} email={member.email} linkedin={member.linkedin} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <StorySection />
 
   <!-- Characters Section -->
@@ -67,6 +92,18 @@ import Footer from '../components/Footer.astro';
 </BaseLayout>
 
 <style>
+.team-section {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
 .characters-section {
   padding: 8rem 0;
   background: linear-gradient(to bottom, var(--dark-900), var(--dark-800));
