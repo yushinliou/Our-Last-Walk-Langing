@@ -4,6 +4,7 @@ description: "We implement our first game demo and get the player have a sense w
 pubDate: 2026-04-16
 author: "Lexi Yu Shin Liou"
 tags: ["sprint", "unity", "mechanics"]
+draft: true
 ---
 
 

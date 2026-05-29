@@ -4,6 +4,7 @@ description: "We implemented movement, input system, and the soul bond mechanic 
 pubDate: 2026-04-10
 author: "Lucky 7"
 tags: ["sprint", "unity", "mechanics"]
+draft: true
 ---
 
 # Markdown Syntax Template
