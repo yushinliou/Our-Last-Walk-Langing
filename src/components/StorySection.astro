@@ -21,10 +21,9 @@
           before the last walk is over.
         </p>
       </div>
-      <!-- TODO: Replace with our own art -->
       <div class="story-silhouette reveal-right">
-        <div class="silhouette-ghost"></div>
-        <div class="silhouette-dog"></div>
+        <img src="/MrRich.png" alt="Mr. Rich" class="silhouette-ghost" />
+        <img src="/angel.png" alt="Angel" class="silhouette-dog" />
       </div>
     </div>
   </div>
@@ -78,33 +77,19 @@
 }
 
 .silhouette-ghost {
-  width: 90px;
-  height: 140px;
-  background: radial-gradient(ellipse at 50% 40%, rgba(94,179,179,0.4), transparent 70%);
-  border-radius: 50% 50% 40% 40%;
-  position: relative;
+  height: 240px;
+  width: auto;
+  object-fit: contain;
   animation: ghostFloat 4s ease-in-out infinite;
-  filter: blur(1px);
-}
-
-.silhouette-ghost::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 10%;
-  right: 10%;
-  height: 30px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(94,179,179,0.25), transparent 70%);
-  border-radius: 0 0 50% 50%;
+  filter: drop-shadow(0 0 16px rgba(94,179,179,0.4));
 }
 
 .silhouette-dog {
-  width: 100px;
-  height: 70px;
-  background: radial-gradient(ellipse at 50% 50%, rgba(232,169,82,0.4), transparent 70%);
-  border-radius: 40% 60% 40% 30%;
+  height: 160px;
+  width: auto;
+  object-fit: contain;
   animation: dogWag 3s ease-in-out infinite;
-  filter: blur(1px);
+  filter: drop-shadow(0 0 12px rgba(232,169,82,0.35));
 }
 
 @keyframes ghostFloat {
